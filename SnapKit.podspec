@@ -11,9 +11,21 @@ Pod::Spec.new do |s|
     :branch => 'main'
   }
 
-  s.source_files = 'Sources/**/*'
-  s.framework    = 'UIKit'
-  s.requires_arc = true
+  s.ios.deployment_target = '12.0'
+  s.osx.deployment_target = '10.13'
+  s.tvos.deployment_target = '12.0'
 
-  s.swift_version = '5.0'
+  s.source_files = 'Sources/**/*.{swift,h,m}'
+
+  s.libraries = 'swiftCoreGraphics'
+
+  s.xcconfig = {
+      'LIBRARY_SEARCH_PATHS' => '$(SDKROOT)/usr/lib/swift',
+  }
+
+  s.resource_bundles = {
+    'SnapKit_Privacy' => ['Sources/PrivacyInfo.xcprivacy'],
+  }
+
+  s.swift_versions = ['5.0']
 end
